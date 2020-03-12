@@ -5,70 +5,269 @@
   <title>Django | Bootstrap</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <style>
   body {
-    font: 20px Montserrat, sans-serif;
-    line-height: 1.8;
-    color: #f5f6f7;
+    font: 400 15px/1.8 Lato, sans-serif;
+    color: #777;
   }
-  p {font-size: 16px;}
-  .margin {margin-bottom: 45px;}
-  .bg-1 { 
-    background-color: #1abc9c; /* Green */
-    color: #ffffff;
+  h3, h4 {
+    margin: 10px 0 30px 0;
+    letter-spacing: 10px;      
+    font-size: 20px;
+    color: #111;
   }
-  .navbar {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border: 0;
+  .container {
+    padding: 80px 120px;
+  }
+  .person {
+    border: 10px solid transparent;
+    margin-bottom: 25px;
+    width: 80%;
+    height: 80%;
+    opacity: 0.7;
+  }
+  .person:hover {
+    border-color: #f1f1f1;
+  }
+  .carousel-inner img {
+    -webkit-filter: grayscale(90%);
+    filter: grayscale(90%); /* make all photos black and white */ 
+    width: 100%; /* Set width to 100% */
+    margin: auto;
+  }
+  .carousel-caption h3 {
+    color: #fff !important;
+  }
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
+    }
+  }
+  .bg-1 {
+    background: #2d2d30;
+    color: #bdbdbd;
+  }
+  .bg-1 h3 {color: #fff;}
+  .bg-1 p {font-style: italic;}
+  .list-group-item:first-child {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+  .list-group-item:last-child {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .thumbnail {
+    padding: 0 0 15px 0;
+    border: none;
     border-radius: 0;
-    margin-bottom: 0;
-    font-size: 14px;
-    letter-spacing: 0;
   }
-  .navbar-nav  li a:hover {
+  .thumbnail p {
+    margin-top: 15px;
+    color: #555;
+  }
+  .btn {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #f1f1f1;
+    border-radius: 0;
+    transition: .2s;
+  }
+  .btn:hover, .btn:focus {
+    border: 1px solid #333;
+    background-color: #fff;
+    color: #000;
+  }
+  .modal-header, h4, .close {
+    background-color: #333;
+    color: #fff !important;
+    text-align: center;
+    font-size: 30px;
+  }
+  .modal-header, .modal-body {
+    padding: 40px 50px;
+  }
+  .nav-tabs li a {
+    color: #777;
+  }
+  #googleMap {
+    width: 100%;
+    height: 400px;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+  }  
+  .navbar {
+    font-family: Montserrat, sans-serif;
+    margin-bottom: 0;
+    background-color: #2d2d30;
+    border: 0;
+    font-size: 11px !important;
+    letter-spacing: 4px;
+    opacity: 0.9;
+  }
+  .navbar li a, .navbar .navbar-brand { 
+    color: #d5d5d5 !important;
+  }
+  .navbar-nav li a:hover {
+    color: #fff !important;
+  }
+  .navbar-nav li.active a {
+    color: #fff !important;
+    background-color: #29292c !important;
+  }
+  .navbar-default .navbar-toggle {
+    border-color: transparent;
+  }
+  .open .dropdown-toggle {
+    color: #fff;
+    background-color: #555 !important;
+  }
+  .dropdown-menu li a {
     color: #000 !important;
+  }
+  .dropdown-menu li a:hover {
+    background-color: red !important;
+  }
+  footer {
+    background-color: #2d2d30;
+    color: #f5f5f5;
+    padding: 32px;
+  }
+  footer a {
+    color: #f5f5f5;
+  }
+  footer a:hover {
+    color: #777;
+    text-decoration: none;
+  }  
+  .form-control {
+    border-radius: 0;
+  }
+  textarea {
+    resize: none;
   }
   </style>
 </head>
-<body style="background-image:url(https://images.pexels.com/photos/3773850/pexels-photo-3773850.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);background-position:center;background-size:cover;">
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
-<!-- Navbar -->
-<nav class="navbar bg-primary" style="height:10px" >
-  <div class="container">
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="nav-link text-white" href="/"><img class="logo" src="https://www.pinclipart.com/picdir/big/178-1785162_white-home-icon-png-vector-royalty-free-download.png" style="height:25px"></a>
+      <a class="nav-link text-white" href="/"><img class="logo" src="https://www.pinclipart.com/picdir/big/178-1785162_white-home-icon-png-vector-royalty-free-download.png" style="height:25px;padding-left:25px;margin-top:10px"></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav text-white navbar-right ">
-        <li><a style="color:#fff;margin-top:-15px" href="/theiz/profile/">Profile</a></li>
-        <li><a style="color:#fff;margin-top:-15px" href="/theiz/team">Teams</a></li>
-        <li><a style="color:#fff;margin-top:-15px" href="/theiz/contact">Contact</a></li>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/theiz/profile">PROFILE</a></li>
+        <li><a href="/theiz/blog">BLOG</a></li>
+        <li><a href="/theiz/team">TEAM</a></li>
+        <li><a href="/theis/contact">CONTACT</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
-<div class="container-fluid">
-  <div class="container">
-    <h1 class="display-4" style="padding-top:100px">Welcome to My App</h1>
-    <p class="lead" >This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-  </div>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox"  class="carousel slide" data-ride="carousel">
+      <div class="item active">
+        <img src="https://images.pexels.com/photos/1038916/pexels-photo-1038916.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="New York" width="1200" height="700" style="margin-top:-250px">
+        <div class="carousel-caption">
+          <h3>Wheezy</h3>
+          <p>Wheezy is the development codename for Debian 7.0. Wheezy received Long-Term-Support until 2018-05-31. Now it is archived, and no longer receives official security updates. It was superseded by Debian/Jessie on 2015-04-25..</p>
+        </div>      
+      </div>
+
+      <div class="item">
+        <img src="https://images.pexels.com/photos/1350461/pexels-photo-1350461.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Chicago" width="1200" height="700" style="margin-top:-250px">
+        <div class="carousel-caption">
+          <h3>Squeezy</h3>
+          <p>Squeeze is the development codename for Debian 6.0. It was the oldstable distribution till end of may 2014. Squeeze received Long-Term-Support until 2016-02-29. Now it is archived, and no longer receives security updates.</p>
+        </div>      
+      </div>
+    
+      <div class="item">
+        <img src="https://images.pexels.com/photos/912388/pexels-photo-912388.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Los Angeles" width="1200" height="700" style="margin-top:-250px">
+        <div class="carousel-caption">
+          <h3>Woody</h3>
+          <p>Debian GNU/Linux 3.0 (a.k.a. woody) was released on 19th of July, 2002. The new release includes many major changes, described in our press release and the Release Notes.</p>
+        </div>      
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
 </div>
 
+  <br>
+
+<!-- Image of location/map -->
+<h2 class="text-center" style="margin-bottom:60px">Province Papua</h2>
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Papua_Locator_Topography.png" class="img-responsive" style="width:100%; height:600px; padding-right:250px; padding-left:250px"><br><br><br><br>
+
 <!-- Footer -->
-<footer class="container-fluid bg-4 text-center" >
-  <p style="margin-top:365px">Built By <a href="https://theisandatu.github.io" target="_blank">Theiz Andatu</a></p> 
+<footer class="text-center">
+  <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a><br><br>
+  <p>Built By <a class="text-primary" href="https://theisandatu.github.io" data-toggle="tooltip" title="Visit w3schools">Theis Andatu</a></p> 
 </footer>
+
+<script>
+$(document).ready(function(){
+  // Initialize Tooltip
+  $('[data-toggle="tooltip"]').tooltip(); 
+  
+  // Add smooth scrolling to all links in navbar + footer link
+  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 900, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+})
+</script>
 
 </body>
 </html>
+
