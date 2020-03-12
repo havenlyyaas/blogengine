@@ -17,6 +17,9 @@ def index(request):
 def profile(request):
   return render(request,'theiz/profile.html')
 
+def blog(request):
+  return render(request,'theiz/blog.html')
+
 def team(request):
   return render(request,'theiz/team.html')
 
